@@ -154,9 +154,9 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE':'django.db.backends.mysql',
         'HOST':'localhost',
-        'NAME':'hluner_blog',
-        'USER':'root',
-        'PASSWORD':'0223ming',
+        'NAME':'你的数据库名字',
+        'USER':'用户名',
+        'PASSWORD':'密码',
         'PORT':'3306',
     }
 }
