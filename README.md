@@ -42,3 +42,12 @@ DATABASES = {
 
 运行项目
 > python manage.py runserver
+
+## 效果截图
+后台二合一预览写文章效果
+
+![](./media/readme/Snipaste_2019-06-04_20-50-19.png)
+
+首页截图
+
+![](./media/readme/Snipaste_2019-06-04_20-55-39.png)
