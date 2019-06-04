@@ -1,0 +1,134 @@
+{% load static %}
+{% load notifications_tags %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/base.css' %}">
+    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/blog_nav.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/back-to-top.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/hight.css' %}" rel="stylesheet">
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/jquery.bootstrap-autohidingnavbar.min.js' %}"></script>
+
+    {% block css %}{% endblock %}
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-nav"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"></a>
+        </div>
+                <a class="navbar-brand" href="{% url 'home' %}" style="font-size: 40px">hluner</a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="my-nav">
+            <ul class="nav navbar-nav">
+
+{#                <li><img src="/media/title/title.png" alt="" style="width: 140px;height: 45px;"></li>#}
+                <li><a href="{% url 'home' %}">首页</a></li>
+                <li><a href="{% url 'blog:index' %}">博客</a></li>
+            </ul>
+
+            <form class="navbar-form navbar-left" role="search" method="get" id="searchform"
+                  action="{% url 'blog:search_view' %}">
+                <div class="form-group">
+                    <input type="search" name="q" class="form-control rounded-0 f-15" placeholder="搜索" required>
+
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+                        <ul class="nav navbar-nav navbar-right" style="margin-right: 0;margin-top: 0;">
+                            {% if request.session.login or request.user.is_authenticated %}
+{#                                判断用户是否登录#}
+                                {% notifications_unread as unread_count %}
+                                <li class="dropdown">
+
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">
+                                        {% if request.user.user_img %}
+                                            <img class="img-responsive img-circle" src="{{ request.user.user_img.url }}" alt="头像" style="width: 45px; height: 45px;"/><span class="caret"></span></a>
+                                        {% else %}
+                                            <img class="img-responsive img-circle" src="/media/user_img/user.jpeg" alt="头像" style="width: 45px; height: 45px;"/><span class="caret"></span></a>
+                                        {% endif %}
+
+                                    <span class="badge unread-count live_notify_badge">{% if unread_count > 0 %}{{ unread_count }}{% endif %}</span>
+                                    <ul class="dropdown-menu">
+
+{#                                        <li><a class="button-success pure-button" href="#">{{ request.user.username }}</a></li>#}
+                                     <li><a class="button-success pure-button" href="{% url 'user:user_info' %}"> {{ request.user.username }}</a></li>
+                                            <li><a class="button-success pure-button" href="{% url 'my_notifications' %}"> 我的消息<span class="badge unread-count live_notify_badge">{% if unread_count > 0 %}{{ unread_count }}{% endif %}</span></a></li>
+<li><a class="button-success pure-button" href="{% url 'user:get_follower' %}"> 关注列表</a></li>
+                                                {% if user.is_staff or user.is_superuser %}
+                                    <li><a href="{% url 'xadmin:index' %}">后台管理</a></li>
+                                {% endif %}
+                                                  <li><a class="button-success pure-button" href="{% url 'logout' %}?next={% url 'blog:index' %}">退出</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+                            {% else %}
+                                <li><a class="button-success pure-button" href="{% url 'login' %}?next={{ request.path }}">登录</a>
+                                </li>
+                                <li><a class="button-success pure-button" href="{% url 'user:register' %}">注册</a></li>
+
+                            {% endif %}
+
+
+                        </ul>
+
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer class="container-fluid mt-4">
+    <div class="card-body text-center px-0 f-16">
+        <p class="card-text mb-1">Copyright&nbsp;&copy;&nbsp;2019-2020
+            <a href="https://github.com/LiuMingHao220" target="_blank" title="前往博主的Github">LiuMingHao220</a>.&nbsp;Powered&nbsp;by&nbsp;Django.
+        </p>
+    </div>
+</footer>
+
+<div id="back-to-top">
+    {#快速返回顶部#}
+    <i class="glyphicon glyphicon-arrow-up"></i>
+</div>
+
+
+<script type="text/javascript">
+    $("#back-to-top").click(function () {
+        window.scrollTo(0,0);
+    });
+
+
+    //自动隐藏顶部导航条
+    $(".navbar-fixed-top").autoHidingNavbar({
+  // 配置参数
+
+});
+
+
+ </script>
+
+
+
+{% block script %}{% endblock %}
+
+</body>
+</html>

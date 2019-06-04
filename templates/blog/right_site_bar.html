@@ -1,0 +1,109 @@
+{% load blog_tags %}
+{% block toc %}{% endblock %}
+
+<div class="row">
+    <div class="widget">
+        <h3>推荐博客</h3>
+        {% get_popular_articles as popular_article_list %}
+
+        {% for article in popular_article_list %}
+            <div>
+                <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                <span class="badge" style="color: white;background-color: darkgreen">{{ article.visiting }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="widget">
+        <h3>推荐新闻</h3>
+        {% get_interest_news as interest_news_list %}
+
+                {% for new in interest_news_list %}
+
+
+                    <div title="{{ new.title }}"><a href="{{ new.url }}">{{ new.title }}</a></div>
+                {% endfor %}
+
+
+
+    </div>
+</div>
+
+{% if request.user.is_authenticated %}
+    <div class="row">
+        <div class="widget">
+            <h3>推荐好友</h3>
+            {% get_interest_user as users_list %}
+            <ul class="list-group">
+                {% for interest_user in users_list %}
+                    <li class="list-group-item"><a href="{% url 'blog:get_article_by_author' interest_user %}">{{ interest_user }}</a>
+                        {% if request.user.is_authenticated %}
+
+                            <a href="{% url 'user:set_follower' request.user interest_user %}"><span class="follow">+关注</span></a>
+
+                        {% endif %}  <span id="message" style="color: red">{{ message }} </span></li>
+                {% endfor %}</ul>
+        </div>
+    </div>
+{% endif %}
+
+
+
+<div class="row">
+    <div class="widget">
+        <h3>分类</h3>
+        {% get_catetories as category_list %}
+        <ul class="list-group">
+            {% for category in category_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'blog:categorybyid' category.id %}">{{ category.name }}</a>
+                    <span class="badge">{% get_acticle_count_of_category category.name %}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="widget">
+        <h3>归档</h3>
+        {% archives as date_list %}
+        <ul class="list-group">
+            {% for date in date_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'blog:archives' date.year date.month %}">
+                        {#                <i class="glyphicon-chevron-right"></i>#}
+                        {{ date.year }}年{{ date.month }}月
+                        <span class="badge">{% get_articles_count_of_archives date.year date.month %}</span>
+                    </a>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="widget">
+        <h3>标签云</h3>
+        {% get_tags as tag_list %}
+        {% for tag in tag_list %}
+            <a href="{% url 'blog:tagbyid' tag.id %}" style="font-size: 20px">
+                <span style="padding: 5px;"
+                      class="label {% cycle 'label-default' 'label-primary' 'label-success' 'label-info' 'label-warning' 'label-danger' %}">{{ tag.name }}</span>
+            </a>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="rss">
+        <a href="{% url 'blog:latest_feed' %}"><i class="glyphicon glyphicon-plus"></i>RSS 订阅</a>
+    </div>
+</div>
+

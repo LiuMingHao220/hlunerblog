@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+    <div class="container" style="margin-top:inherit;">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-9">
+        {% if message %}
+         <div> <h3>{{ message }}</h3></div>
+        {% else %}
+
+            <ul class="notifications">
+            <h3>{{ author.username }}的文章如下:</h3>
+                {% for article in article_list %}
+
+                    <a href="{{ article.get_absolute_url }}" target="_blank"></a>
+
+                    <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+
+                    {% if article.img %}
+                        <img src="{{ article.img.url }}" width="20%" height="20%">
+                    {% endif %}
+                    {% if article.abstract %}
+                        <p>{{ article.abstract }}</p>
+
+                    {% else %}
+                        <p>{{ article.body|truncatechars:180 }}</p>
+                    {% endif %}
+                    <p>
+                        <span>作者：{{ article.author }}</span>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：{{ article.created_time }}</span>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;阅读数：{{ article.visiting }}</span>
+
+                    </p>
+
+
+                {% endfor %}
+        </ul>
+        {% endif %}
+
+        </div>
+    <div class="col-xs-6 col-md-3">
+                {% include 'blog/right_site_bar.html' %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

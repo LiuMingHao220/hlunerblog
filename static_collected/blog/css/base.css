@@ -1,0 +1,54 @@
+.summary-list .avatar {
+    width:1.2rem;
+    heigth:1.2rem;
+    margin-right:.2rem;
+    border-radius: 50%;
+}
+.summary-list .media {
+    background-color: #fff;
+}
+.summary-list .cate {
+    color: #ea6f5a;
+}
+.summary-list .cate:hover {
+    color: #17a2b8;
+}
+.summary-list .avatar {
+    width:1.35rem;
+    heigth:1.35rem;
+}
+.summary-list .media:hover {
+    box-shadow:0 2px 6px rgba(0, 0, 0, 0.275)
+}
+.summary-list .avatar {
+    width:1.5rem;
+    heigth:1.5rem;
+}
+div.hot-blog{
+
+    height: auto;
+    width: auto;
+    border-bottom: 1px dashed #CCC;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+}
+div.like {
+    color: #337ab7;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.5em 0.3em;
+}
+
+div.like .active{
+    color: #f22;
+}
+.unread-count {
+    background-color: #00c4ff!important;
+}
+
+.dropdown-menu a{
+    color: #777;
+    font-size: 16px;
+
+}
+

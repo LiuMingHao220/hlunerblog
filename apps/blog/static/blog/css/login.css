@@ -1,0 +1,51 @@
+div img{
+    display:inline-block;
+    width:130px;
+    height:80px;
+    /*border: solid 5px red;*/
+    vertical-align: 0px;
+}
+div p{
+    /*border: solid 5px red;*/
+    display: inline-block;
+    width:130px;
+    height:80px;
+    margin-left: 10px;
+    /*padding-left:20px;*/
+    /*padding-top:20px;*/
+    text-align:center;
+    line-height:50px;
+    vertical-align:33px;
+    /*vertical-align: super;*/
+}
+input{
+    display: inline-block;
+    width:300px;
+    height:30px;
+}
+
+
+.four{
+    width:300px;
+}
+.yan{
+    width:181px;
+    height:36px;
+}
+#o666{
+    width:10px;
+    height:10px;
+}
+label{
+    font-size:12px;
+    vertical-align:1px;
+}
+.zhuce{
+    display:inline-block;
+    margin-left: 55px;
+    background-color:blue;
+    color:white;
+    padding:0px;
+    border-width:0px;
+    height:46px;
+}

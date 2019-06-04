@@ -1,0 +1,51 @@
+hr {
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid #fff;
+}
+
+.single_comment {
+    margin-bottom: 20px;
+    font-family: "Microsoft Yahei","微软雅黑",Arial,Helvetica,STHeiti,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.single_comment img {
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    overflow:hidden;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.single_comment p {
+    margin-bottom: 0;
+}
+
+.comment-content {
+    border-bottom: 1px dashed lightgrey;
+    border-left: 1px dashed #2d7da4;
+    padding-bottom: 5px;
+}
+
+div.comment-area{
+    margin-top: 2em;
+}
+h3.comment-title{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.4em;
+}
+
+div.django-ckeditor-widget{
+    width: 100%;
+}
+
+
+div.comment {
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+}
+div.reply {
+    margin-left: 2em;
+}
