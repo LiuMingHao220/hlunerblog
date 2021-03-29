@@ -30,7 +30,7 @@ openpyxl==2.6.2
 Paginator==0.5.1
 pilkit==2.0
 Pillow==6.0.0
-Pygments==2.3.1
+Pygments==2.7.4
 pymongo==3.8.0
 PyMySQL==0.9.3
 pytz==2019.1
